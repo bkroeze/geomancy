@@ -1,0 +1,53 @@
+{
+  "name": "geomancy",
+  "description": "Geomantic utilities",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bkroeze/geomancy",
+  "author": {
+    "name": "Bruce Kroeze",
+    "email": "bkroeze@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bkroeze/geomancy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bkroeze/geomancy/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "lib/geomancy",
+  "engines": {
+    "node": ">=0.10.26",
+    "npm": ">=1.4.3"
+  },
+  "scripts": {
+    "test": "gulp test && ava"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "dependencies": {
+    "babel-preset-stage-2": "^6.18.0",
+    "espower": "^1.3.2",
+    "lodash": "^4.16.6"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2016": "^6.16.0",
+    "chai": "~1.9.1",
+    "gulp": "^3.9.0",
+    "gulp-ava": "^0.14.1",
+    "gulp-babel": "^6.1.2"
+  },
+  "keywords": []
+}
