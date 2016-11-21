@@ -42,3 +42,39 @@ test('It should get by name', t => {
   t.is(geo.number, 1001);
   t.is(geo.name.toLowerCase(), 'carcer');
 });
+
+test('It should get by Flags', t => {
+  let geo = Figure.byFlags('1111');
+  t.is(geo.name, 'Via');
+});
+
+test('It should get lines of figures by index', t => {
+  let geo = Figure.byName('carcer');
+  t.truthy(geo.getLine(0));
+  t.falsy(geo.getLine(1));
+  t.falsy(geo.getLine(2));
+  t.truthy(geo.getLine(3));
+});
+
+test('It should get details of figures', t => {
+  let geo = Figure.byName('Albus');
+  t.is(geo.details.english, 'White');
+});
+
+test('It should add figures together', t => {
+  let via = Figure.byName('Via');
+  let populus = Figure.byName('Populus');
+  t.is(via.add(populus), via);
+  let fmajor = Figure.byName('fortuna major');
+  let fminor = Figure.byName('fortuna minor');
+  t.is(fmajor.add(via), fminor);
+});
+
+test('It should add together several figures in sequence', t => {
+  let puer = Figure.byName('puer');
+  let via = Figure.byName('Via');
+  let conj = Figure.byName('Conjunctio');
+  t.is(via.add(puer, conj).name, 'Rubeus');
+  // same as
+  t.is(via.add(puer).add(conj).name, 'Rubeus');
+});
