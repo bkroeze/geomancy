@@ -2,7 +2,7 @@
 import test from 'ava';
 import { Figure } from '../lib/models';
 
-test('It should construct via a numeric boolean (1)', t => {
+test('Figure should construct via a numeric boolean (1)', t => {
   let geo = new Figure(1000);
   t.falsy(geo.fire);
   t.falsy(geo.air);
@@ -11,7 +11,7 @@ test('It should construct via a numeric boolean (1)', t => {
   t.is(geo.number, 1000);
 });
 
-test('It should construct via a numeric boolean (2)', t => {
+test('Figure  should construct via a numeric boolean (2)', t => {
   let geo = new Figure();
   geo.flags = 1100;
   t.falsy(geo.fire);
@@ -21,7 +21,7 @@ test('It should construct via a numeric boolean (2)', t => {
   t.is(geo.number, 1100);
 });
 
-test('It should construct via a numeric boolean (3)', t => {
+test('Figure should construct via a numeric boolean (3)', t => {
   let geo = new Figure(11);
   t.truthy(geo.fire);
   t.truthy(geo.air);
@@ -30,7 +30,7 @@ test('It should construct via a numeric boolean (3)', t => {
   t.is(geo.number, 11);
 });
 
-test('It should get by name', t => {
+test('Figure should get by name', t => {
   let geo = Figure.byName('via');
   t.is(geo.number, 1111);
 
@@ -43,12 +43,12 @@ test('It should get by name', t => {
   t.is(geo.name.toLowerCase(), 'carcer');
 });
 
-test('It should get by Flags', t => {
+test('Figure should get by Flags', t => {
   let geo = Figure.byFlags('1111');
   t.is(geo.name, 'Via');
 });
 
-test('It should get lines of figures by index', t => {
+test('Figure should get lines of figures by index', t => {
   let geo = Figure.byName('carcer');
   t.truthy(geo.getLine(0));
   t.falsy(geo.getLine(1));
@@ -56,12 +56,12 @@ test('It should get lines of figures by index', t => {
   t.truthy(geo.getLine(3));
 });
 
-test('It should get details of figures', t => {
+test('Figure should get details of figures', t => {
   let geo = Figure.byName('Albus');
   t.is(geo.details.english, 'White');
 });
 
-test('It should add figures together', t => {
+test('Figure should add figures together', t => {
   let via = Figure.byName('Via');
   let populus = Figure.byName('Populus');
   t.is(via.add(populus), via);
@@ -70,7 +70,7 @@ test('It should add figures together', t => {
   t.is(fmajor.add(via), fminor);
 });
 
-test('It should add together several figures in sequence', t => {
+test('Figure should add together several figures in sequence', t => {
   let puer = Figure.byName('puer');
   let via = Figure.byName('Via');
   let conj = Figure.byName('Conjunctio');

@@ -8,16 +8,8 @@
 
 'use strict';
 import gulp from 'gulp';
-// var mocha = require('gulp-mocha')
 import ava from 'gulp-ava';
-
-// gulp.task('test', function () {
-//   return gulp.src('./test/*.js')
-//     .pipe(mocha({
-//       ui: 'bdd',
-//       reporter: 'spec'
-//     }))
-// })
+import babel from 'gulp-babel';
 
 gulp.task('test', function () {
   gulp.src('./test/**/*spec.js')
@@ -29,12 +21,12 @@ gulp.task('watch', function () {
   gulp.watch(['./lib/**/*.js', './test/**/*.js'], ['test']);
 });
 
-// gulp.task('build', function () {
-//   return gulp.src('./lib/**/*.js')
-//     .pipe(babel({
-//       presets: ['es2016']
-//     }))
-//     .pipe(gulp.dest('dist'))
-// })
+gulp.task('build', function () {
+  return gulp.src('./lib/**/*.js')
+    .pipe(babel({
+      presets: ['es2016']
+    }))
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('default', ['test', 'watch']);
