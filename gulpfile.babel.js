@@ -10,11 +10,14 @@
 import gulp from 'gulp';
 import ava from 'gulp-ava';
 import babel from 'gulp-babel';
+import { spawn} from 'child_process';
 
 gulp.task('test', function () {
   gulp.src('./test/**/*spec.js')
     // gulp-ava needs filepaths so you can't have any plugins before it
-    .pipe(ava({verbose: true}));
+    .pipe(ava({
+      verbose: true
+    }));
 });
 
 gulp.task('watch', function () {
@@ -30,3 +33,9 @@ gulp.task('build', function () {
 });
 
 gulp.task('default', ['test', 'watch']);
+
+gulp.task('npm', function (done) {
+  spawn('npm', ['publish'], {
+    stdio: 'inherit'
+  }).on('close', done);
+});

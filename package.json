@@ -1,7 +1,7 @@
 {
   "name": "geomancy",
   "description": "Geomantic utilities",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/bkroeze/geomancy",
   "author": {
     "name": "Bruce Kroeze",
@@ -20,7 +20,7 @@
       "url": "http://opensource.org/licenses/MIT"
     }
   ],
-  "main": "lib/index",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=0.10.26",
     "npm": ">=1.4.3"
@@ -44,7 +44,17 @@
     "babel-preset-stage-2": "^6.18.0",
     "gulp": "^3.9.0",
     "gulp-ava": "^0.14.1",
-    "gulp-babel": "^6.1.2"
+    "gulp-babel": "^6.1.2",
+    "gulp-npm-publish": "0.0.2"
   },
-  "keywords": ["geomancy", "magick", "divination"]
+  "keywords": [
+    "geomancy",
+    "magick",
+    "divination"],
+"files": [
+    "LICENSE",
+    "README.md",
+    "lib/charts.js",
+    "lib/index.js",
+    "lib/models.js"]
 }

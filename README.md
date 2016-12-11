@@ -1,15 +1,17 @@
-# geomancy 
+# geomancy
 
 Geomantic utilities
 
-[![Build Status](https://secure.travis-ci.org/bkroeze/geomancy.png?branch=master)](http://travis-ci.org/bkroeze/geomancy) [![NPM version](https://badge-me.herokuapp.com/api/npm/geomancy.png)](http://badges.enytc.com/for/npm/geomancy) 
+[![Build Status](https://secure.travis-ci.org/bkroeze/geomancy.png?branch=master)](http://travis-ci.org/bkroeze/geomancy) [![NPM version](https://badge-me.herokuapp.com/api/npm/geomancy.png)](http://badges.enytc.com/for/npm/geomancy)
 
 ## Getting Started
 Install the module with: `npm install geomancy`
 
 ```javascript
 var geomancy = require('geomancy');
-geomancy.awesome(); // "hello "
+const fig = geomancy.Figure.byName('populus'); // Populus Figure
+
+Look at the tests for examples of the API.
 ```
 
 ## Other stuff
