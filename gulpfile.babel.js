@@ -11,6 +11,7 @@ import gulp from 'gulp';
 import ava from 'gulp-ava';
 import babel from 'gulp-babel';
 import { spawn} from 'child_process';
+import bump from 'gulp-bump';
 
 gulp.task('test', function () {
   gulp.src('./test/**/*spec.js')
@@ -18,6 +19,12 @@ gulp.task('test', function () {
     .pipe(ava({
       verbose: true
     }));
+});
+
+gulp.task('bump', function () {
+  gulp.src('./package.json')
+    .pipe(bump())
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('watch', function () {
