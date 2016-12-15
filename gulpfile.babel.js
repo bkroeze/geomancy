@@ -46,3 +46,5 @@ gulp.task('npm', function (done) {
     stdio: 'inherit'
   }).on('close', done);
 });
+
+gulp.task('release', ['test', 'build', 'bump', 'npm']);

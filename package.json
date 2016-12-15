@@ -1,7 +1,7 @@
 {
   "name": "geomancy",
   "description": "Geomantic utilities",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "https://github.com/bkroeze/geomancy",
   "author": {
     "name": "Bruce Kroeze",
@@ -43,6 +43,7 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2016": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
     "gulp": "^3.9.0",
     "gulp-ava": "^0.14.1",
