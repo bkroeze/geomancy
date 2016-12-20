@@ -76,3 +76,8 @@ test('Chart should construct with a sequence', t => {
   t.is(shield.get('Right Witness').name, 'Albus');
   t.is(shield.get('Judge').name, 'Conjunctio');
 });
+
+test('Chart should publish shield field names', t => {
+  const chart = new Chart();
+  t.is(chart.shieldKeys[0], 'Mother 1');
+});
