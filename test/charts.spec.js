@@ -44,7 +44,8 @@ test('Chart Sequence should project neices and the rest', t => {
 
 test('Sequence.get only works on numbers', t => {
   const error = t.throws(() => {
-    seq.get('foo');}, TypeError);
+    seq.get('foo');
+  }, TypeError);
   t.is(error.message, 'Invalid Index');
 });
 
@@ -57,6 +58,26 @@ test('Chart should construct without a sequence', t => {
     let {figure, strength} = houses[i];
     t.is(figure.name, 'Populus');
     t.is(strength, figure.getStrength(i + 1));
+  }
+});
+
+test('Chart should store and return querent/quesited', t => {
+  const chart = new Chart();
+  chart.querent = 1;
+  chart.quesited = 2;
+  const houses = chart.getHouses();
+  let house;
+  for (let i = 0; i < 12; i++) {
+    house = houses[i];
+    t.is(house.figure.name, 'Populus');
+    if (i === 1) {
+      t.is(house.querent, true);
+    } else if (i === 2) {
+      t.is(house.quesited, true);
+    } else {
+      t.is(house.querent, false);
+      t.is(house.quesited, false);
+    }
   }
 });
 
@@ -80,4 +101,14 @@ test('Chart should construct with a sequence', t => {
 test('Chart should publish shield field names', t => {
   const chart = new Chart();
   t.is(chart.shieldKeys[0], 'Mother 1');
+});
+
+test('Chart should return a standalone clone', t => {
+  const chart = new Chart();
+  const chart2 = chart.clone();
+  t.is(chart === chart2, false);
+  t.is(chart.seq === chart2.seq, false);
+  const s1 = chart.getSeeds(true).join(',');
+  const s2 = chart2.getSeeds(true).join(',');
+  t.is(s1 === s2, true);
 });
