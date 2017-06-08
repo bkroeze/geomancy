@@ -82,7 +82,7 @@ test('Chart should store and return querent/quesited', t => {
 });
 
 test('Chart should construct with a sequence', t => {
-  seq = new ChartSequence('amisso', 'conjunctio', 'laetitia', 'populus');
+  const seq = new ChartSequence('amisso', 'conjunctio', 'laetitia', 'populus');
   const chart = new Chart(seq);
   const shield = chart.getShield();
   t.is(shield.get('Mother 1').name, 'Amisso');
@@ -111,4 +111,14 @@ test('Chart should return a standalone clone', t => {
   const s1 = chart.getSeeds(true).join(',');
   const s2 = chart2.getSeeds(true).join(',');
   t.is(s1 === s2, true);
+});
+
+test('Chart should find springs', t => {
+  const seq = new ChartSequence('amisso', 'conjunctio', 'laetitia', 'populus');
+  const chart = new Chart(seq, 0, 11);
+  const perfections = chart.getPerfections();
+  t.is(perfections.springs.querent.length, 1);
+  t.deepEqual(perfections.springs.querent, [4]);
+  t.is(perfections.springs.quesited.length, 2);
+  t.deepEqual(perfections.springs.quesited, [6, 8]);
 });
