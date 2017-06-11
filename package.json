@@ -41,6 +41,7 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
+    "espower": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.17.1",
     "gulp-babel": "^6.1.2",
