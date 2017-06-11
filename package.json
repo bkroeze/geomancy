@@ -14,12 +14,7 @@
   "bugs": {
     "url": "https://github.com/bkroeze/geomancy/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
-    }
-  ],
+  "license": "MIT",
   "main": "dist/index.js",
   "engines": {
     "node": ">=0.10.26",
@@ -35,18 +30,18 @@
     "babel": "inherit"
   },
   "dependencies": {
-    "gulp-bump": "^2.5.1",
-    "lodash": "^4.16.6"
+    "gulp-bump": "^2.7.0",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "ava": "^0.19.1",
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.2",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2016": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-ava": "^0.17.1",
     "gulp-babel": "^6.1.2",
     "gulp-npm-publish": "0.0.2"
