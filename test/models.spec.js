@@ -1,6 +1,6 @@
 'use strict';
 import test from 'ava';
-import { Figure } from '../lib/models';
+import { Figure, House } from '../lib/models';
 
 test('Figure should construct via a numeric boolean (1)', t => {
   let geo = new Figure(1000);
@@ -77,4 +77,20 @@ test('Figure should add together several figures in sequence', t => {
   t.is(via.add(puer, conj).name, 'Rubeus');
   // same as
   t.is(via.add(puer).add(conj).name, 'Rubeus');
+});
+
+test('House should know its neighbors', t => {
+  let h = new House(6);
+  t.is(h.isNextTo(2), false);
+  t.is(h.isNextTo(5), true);
+  t.is(h.isNextTo(7), true);
+  t.is(h.isNextTo(10), false);
+});
+
+test('House should know its neighbors, wrapping around', t => {
+  let h = new House(0);
+  t.is(h.isNextTo(4), false);
+  t.is(h.isNextTo(1), true);
+  t.is(h.isNextTo(11), true);
+  t.is(h.isNextTo(10), false);
 });

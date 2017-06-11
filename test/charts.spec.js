@@ -122,3 +122,38 @@ test('Chart should find springs', t => {
   t.is(perfections.springs.quesited.length, 2);
   t.deepEqual(perfections.springs.quesited, [6, 8]);
 });
+
+test('Chart should find occupation', t => {
+  /*
+  [ 'Via',
+  'Populus',
+  'Conjunctio',
+  'Populus',
+  'Laetitia',
+  'Amisso',
+  'Amisso',
+  'Laetitia',
+  'Via',
+  'Conjunctio',
+  'Albus',
+  'Albus' ]
+  */
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 0, 8);
+  const perfections = chart.getPerfections();
+  t.deepEqual(perfections.occupation, [8]);
+});
+
+test('Chart should find conjunction', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 0, 7);
+  const perfections = chart.getPerfections();
+  t.deepEqual(perfections.conjunction.quesited, [8]);
+});
+
+test('Chart should find no mutation', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 0, 7);
+  const perfections = chart.getPerfections();
+  t.is(perfections.mutation.length, 0);
+});
