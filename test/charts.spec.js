@@ -57,7 +57,7 @@ test('Chart should construct without a sequence', t => {
   for (let i = 0; i < 12; i++) {
     let {figure, strength} = houses[i];
     t.is(figure.name, 'Populus');
-    t.is(strength, figure.getStrength(i + 1));
+    t.is(strength, figure.getStrength(i));
   }
 });
 
@@ -114,29 +114,41 @@ test('Chart should return a standalone clone', t => {
 });
 
 test('Chart should find springs', t => {
+  // [ 0, 'Amisso' ],
+  // [ 1, 'Conjunctio' ],
+  // [ 2, 'Laetitia' ],
+  // [ 3, 'Populus' ],
+  // [ 4, 'Amisso' ],
+  // [ 5, 'Rubeus' ],
+  // [ 6, 'Fortuna Minor' ],
+  // [ 7, 'Populus' ],
+  // [ 8, 'Fortuna Minor' ],
+  // [ 9, 'Laetitia' ],
+  // [ 10, 'Cauda Draconis' ],
+  // [ 11, 'Fortuna Minor' ]
   const seq = new ChartSequence('amisso', 'conjunctio', 'laetitia', 'populus');
   const chart = new Chart(seq, 0, 11);
   const perfections = chart.getPerfections();
   t.is(perfections.springs.querent.length, 1);
   t.deepEqual(perfections.springs.querent, [4]);
-  t.is(perfections.springs.quesited.length, 2);
+  //t.is(perfections.springs.quesited.length, 2);
   t.deepEqual(perfections.springs.quesited, [6, 8]);
 });
 
 test('Chart should find occupation', t => {
   /*
-  [ 'Via',
-  'Populus',
-  'Conjunctio',
-  'Populus',
-  'Laetitia',
-  'Amisso',
-  'Amisso',
-  'Laetitia',
-  'Via',
-  'Conjunctio',
-  'Albus',
-  'Albus' ]
+  [0'Via',
+  1 'Populus',
+  2 'Conjunctio',
+  3 'Populus',
+  4 'Laetitia',
+  5 'Amisso',
+  6 'Amisso',
+  7 'Laetitia',
+  8 'Via',
+  9 'Conjunctio',
+  10 'Albus',
+  11 'Albus' ]
   */
   const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
   const chart = new Chart(seq, 0, 8);
@@ -156,4 +168,12 @@ test('Chart should find no mutation', t => {
   const chart = new Chart(seq, 0, 7);
   const perfections = chart.getPerfections();
   t.is(perfections.mutation.length, 0);
+});
+
+test('Chart should find a mutation', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 1, 7);
+  const perfections = chart.getPerfections();
+  t.is(perfections.mutation.length, 1);
+  t.deepEqual(perfections.mutation[0], {querent: 3, quesited: 4})
 });
