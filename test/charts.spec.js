@@ -177,3 +177,25 @@ test('Chart should find a mutation', t => {
   t.is(perfections.mutation.length, 1);
   t.deepEqual(perfections.mutation[0], {querent: 3, quesited: 4})
 });
+
+test('Chart should find no translations', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 2, 9);
+  const perfections = chart.getPerfections();
+  t.is(perfections.translation.length, 0);
+});
+
+test('Chart should find a translation', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 3, 6);
+  const perfections = chart.getPerfections();
+  t.is(perfections.translation.length, 1);
+  t.deepEqual(perfections.translation[0], [4,7]);
+});
+
+test('Chart should not find a translation for the house exactly between the two', t=> {
+    const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+    const chart = new Chart(seq, 7, 9);
+    const perfections = chart.getPerfections();
+    t.is(perfections.translation.length, 0);
+});
