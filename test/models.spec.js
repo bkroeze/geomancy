@@ -94,3 +94,44 @@ test('House should know its neighbors, wrapping around', t => {
   t.is(h.isNextTo(11), true);
   t.is(h.isNextTo(10), false);
 });
+
+test('House should compare less than', t => {
+  let h = new House(6);
+  t.is(h.isLessThan(7, 0), true);
+  t.is(h.isLessThan(5, 0), false);
+  t.is(h.isLessThan(0, 0), false);
+  t.is(h.isLessThan(10, 0), true);
+  t.is(h.isLessThan(10, 8), false);
+});
+
+test('House should know its aspects', t => {
+  let h = new House(0);
+  t.deepEqual(h.trines, [4,8]);
+  t.deepEqual(h.squares, [3,9]);
+  t.deepEqual(h.sextiles, [2, 10]);
+  t.is(h.opposition, 6);
+});
+
+test('House should know sinister/dexter', t => {
+  let h = new House(0);
+  t.is(h.isSinisterOf(1), true);
+  t.is(h.isDexterOf(2), false);
+  t.is(h.isSinisterOf(2), true);
+  t.is(h.isSinisterOf(5), true);
+  t.is(h.isDexterOf(5), false);
+  t.is(h.isSinisterOf(6), false);
+  t.is(h.isDexterOf(6), false);
+  t.is(h.isSinisterOf(11), false);
+  t.is(h.isDexterOf(11), true);
+});
+
+test('Other houses know sinister too', t => {
+  let h = new House(6);
+  t.is(h.isSinisterOf(1), false);
+  t.is(h.isSinisterOf(2), false);
+  t.is(h.isSinisterOf(5), false);
+  t.is(h.isSinisterOf(0), false);
+  t.is(h.isSinisterOf(7), true);
+  t.is(h.isSinisterOf(11), true);
+
+})

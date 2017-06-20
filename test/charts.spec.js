@@ -193,9 +193,27 @@ test('Chart should find a translation', t => {
   t.deepEqual(perfections.translation[0], [4,7]);
 });
 
-test('Chart should not find a translation for the house exactly between the two', t=> {
-    const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
-    const chart = new Chart(seq, 7, 9);
-    const perfections = chart.getPerfections();
-    t.is(perfections.translation.length, 0);
+test('Chart should not find a translation for the house exactly between the two', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 7, 9);
+  const perfections = chart.getPerfections();
+  t.is(perfections.translation.length, 0);
+});
+
+test('Chart should find aspects 1', t => {
+  const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
+  const chart = new Chart(seq, 0, 9);
+  const perfections = chart.getPerfections();
+  t.is(perfections.aspects.perfections.length, 1);
+  t.deepEqual(perfections.aspects.perfections[0], {
+    direction: 'sinister',
+    querent: 0,
+    quesited: 2,
+    aspect: 'sextile' });
+  t.is(perfections.aspects.denials.length, 1);
+  t.deepEqual(perfections.aspects.denials[0], {
+    direction: '',
+    querent: 8,
+    quesited: 2,
+    aspect: 'opposition'});
 });
