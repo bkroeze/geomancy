@@ -146,4 +146,18 @@ test('Other houses know sinister too', t => {
   t.is(h.isSinisterOf(0), false);
   t.is(h.isSinisterOf(7), true);
   t.is(h.isSinisterOf(11), true);
-})
+});
+
+test('House should know its parents', t => {
+  const makeHouse = (ix) => new House(ix);
+  for (let i=0; i<8; i++) {
+    t.deepEqual(makeHouse(i).parents, []);
+  }
+  t.deepEqual(makeHouse(8).parents, [0,1]);
+  t.deepEqual(makeHouse(9).parents, [2,3]);
+  t.deepEqual(makeHouse(10).parents, [4,5]);
+  t.deepEqual(makeHouse(11).parents, [6,7]);
+  t.deepEqual(makeHouse(12).parents, [8,9]);
+  t.deepEqual(makeHouse(13).parents, [10,11]);
+  t.deepEqual(makeHouse(14).parents, [12,13]);
+});
