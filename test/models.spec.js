@@ -79,6 +79,19 @@ test('Figure should add together several figures in sequence', t => {
   t.is(via.add(puer).add(conj).name, 'Rubeus');
 });
 
+test('Figure should calculate its point count', t => {
+  let puer = Figure.byName('puer');
+  let via = Figure.byName('Via');
+  let conj = Figure.byName('Conjunctio');
+
+  t.is(puer.getPoints(), 5);
+  t.is(puer.getActivePoints(), 3);
+  t.is(via.getPoints(), 4);
+  t.is(via.getActivePoints(), 4);
+  t.is(conj.getPoints(), 6);
+  t.is(conj.getActivePoints(), 2);
+});
+
 test('House should know its neighbors', t => {
   let h = new House(6);
   t.is(h.isNextTo(2), false);
@@ -133,5 +146,4 @@ test('Other houses know sinister too', t => {
   t.is(h.isSinisterOf(0), false);
   t.is(h.isSinisterOf(7), true);
   t.is(h.isSinisterOf(11), true);
-
 })

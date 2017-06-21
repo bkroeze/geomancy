@@ -200,6 +200,22 @@ test('Chart should not find a translation for the house exactly between the two'
   t.is(perfections.translation.length, 0);
 });
 
+test('Chart should find its index', t => {
+  const seq = new ChartSequence('Via', 'Via', 'Via', 'Via');
+  const chart = new Chart(seq, 0, 7);
+  const house = chart.getIndex();
+  t.is(house.index, 8);
+  t.is(house.equals(chart.getHouse(8)), true);
+});
+
+test('Chart should find its part of fortune', t => {
+  const seq = new ChartSequence('Via', 'Via', 'Via', 'Via');
+  const chart = new Chart(seq, 0, 7);
+  const house = chart.getPartOfFortune();
+  t.is(house.index, 4);
+  t.is(house.equals(chart.getHouse(4)), true);
+})
+
 test('Chart should find aspects 1', t => {
   const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
   const chart = new Chart(seq, 0, 9);
