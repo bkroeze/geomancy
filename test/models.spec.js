@@ -2,6 +2,8 @@
 import test from 'ava';
 import { Figure, House } from '../lib/models';
 
+const makeHouse = (ix) => new House(ix);
+
 test('Figure should construct via a numeric boolean (1)', t => {
   let geo = new Figure(1000);
   t.falsy(geo.fire);
@@ -92,6 +94,19 @@ test('Figure should calculate its point count', t => {
   t.is(conj.getActivePoints(), 2);
 });
 
+test('Figures should know their company types', t => {
+  const puer = Figure.byName('puer');
+  const puella = Figure.byName('puella');
+  const rubeus = Figure.byName('rubeus');
+  const via = Figure.byName('via');
+  const conjunctio = Figure.byName('conjunctio');
+  t.is(puer.getCompanyType(puer), 'simple');
+  t.is(puer.getCompanyType(puella), 'compound');
+  t.is(puer.getCompanyType(rubeus), 'demi-simple');
+  t.is(puer.getCompanyType(via), 'capitular');
+  t.is(puer.getCompanyType(conjunctio), null);
+});
+
 test('House should know its neighbors', t => {
   let h = new House(6);
   t.is(h.isNextTo(2), false);
@@ -149,7 +164,6 @@ test('Other houses know sinister too', t => {
 });
 
 test('House should know its parents', t => {
-  const makeHouse = (ix) => new House(ix);
   for (let i=0; i<8; i++) {
     t.deepEqual(makeHouse(i).parents, []);
   }
@@ -160,4 +174,19 @@ test('House should know its parents', t => {
   t.deepEqual(makeHouse(12).parents, [8,9]);
   t.deepEqual(makeHouse(13).parents, [10,11]);
   t.deepEqual(makeHouse(14).parents, [12,13]);
+});
+
+test('House should know its companion', t => {
+  t.is(makeHouse(0).companion, 1);
+  t.is(makeHouse(1).companion, 0);
+  t.is(makeHouse(2).companion, 3);
+  t.is(makeHouse(3).companion, 2);
+  t.is(makeHouse(4).companion, 5);
+  t.is(makeHouse(5).companion, 4);
+  t.is(makeHouse(6).companion, 7);
+  t.is(makeHouse(7).companion, 6);
+  t.is(makeHouse(8).companion, 9);
+  t.is(makeHouse(9).companion, 8);
+  t.is(makeHouse(10).companion, 11);
+  t.is(makeHouse(11).companion, 10);
 });

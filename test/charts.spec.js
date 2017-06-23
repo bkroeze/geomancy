@@ -228,3 +228,22 @@ test('Chart should find aspects 1', t => {
     quesited: 2,
     aspect: 'opposition'});
 });
+
+test('Chart should find its way of points - single', t => {
+  let chart = new Chart(['fortuna minor', 'populus', 'populus', 'populus']);
+  let points = chart.getWayOfThePoint();
+  t.is(points.length, 1);
+  t.is(points[0], 0);
+
+  chart = new Chart(['fortuna minor', 'cauda draconis', 'laetitia' ,'populus']);
+  points = chart.getWayOfThePoint();
+  t.is(points.length, 1);
+  t.is(points[0], 2);
+});
+
+test('Chart should find its way of points - branching', t => {
+  let chart = new Chart(['fortuna minor', 'cauda draconis', 'fortuna minor', 'laetitia']);
+  let points = chart.getWayOfThePoint();
+  t.is(points.length, 2);
+  t.deepEqual(points, [6,7]);
+});
