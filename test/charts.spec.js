@@ -126,7 +126,7 @@ test('Chart should find springs', t => {
   const perfections = chart.getPerfections();
   t.is(perfections.springs.querent.length, 1);
   t.deepEqual(perfections.springs.querent, [4]);
-  //t.is(perfections.springs.quesited.length, 2);
+  // t.is(perfections.springs.quesited.length, 2);
   t.deepEqual(perfections.springs.quesited, [6, 8]);
 });
 
@@ -170,7 +170,7 @@ test('Chart should find a mutation', t => {
   const chart = new Chart(seq, 1, 7);
   const perfections = chart.getPerfections();
   t.is(perfections.mutation.length, 1);
-  t.deepEqual(perfections.mutation[0], {querent: 3, quesited: 4})
+  t.deepEqual(perfections.mutation[0], {querent: 3, quesited: 4});
 });
 
 test('Chart should find no translations', t => {
@@ -185,7 +185,7 @@ test('Chart should find a translation', t => {
   const chart = new Chart(seq, 3, 6);
   const perfections = chart.getPerfections();
   t.is(perfections.translation.length, 1);
-  t.deepEqual(perfections.translation[0], [4,7]);
+  t.deepEqual(perfections.translation[0], [4, 7]);
 });
 
 test('Chart should not find a translation for the house exactly between the two', t => {
@@ -209,7 +209,7 @@ test('Chart should find its part of fortune', t => {
   const house = chart.getPartOfFortune();
   t.is(house.index, 4);
   t.is(house.equals(chart.getHouse(4)), true);
-})
+});
 
 test('Chart should find aspects 1', t => {
   const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
@@ -235,7 +235,7 @@ test('Chart should find its way of points - single', t => {
   t.is(points.length, 1);
   t.is(points[0], 0);
 
-  chart = new Chart(['fortuna minor', 'cauda draconis', 'laetitia' ,'populus']);
+  chart = new Chart(['fortuna minor', 'cauda draconis', 'laetitia', 'populus']);
   points = chart.getWayOfThePoint();
   t.is(points.length, 1);
   t.is(points[0], 2);
@@ -245,5 +245,26 @@ test('Chart should find its way of points - branching', t => {
   let chart = new Chart(['fortuna minor', 'cauda draconis', 'fortuna minor', 'laetitia']);
   let points = chart.getWayOfThePoint();
   t.is(points.length, 2);
-  t.deepEqual(points, [6,7]);
+  t.deepEqual(points, [6, 7]);
+});
+
+test('Chart should find company', t => {
+  let chart = new Chart();
+  let result = chart.getCompany(0);
+  t.deepEqual(result, {house: 1, company: 'simple'});
+
+  chart = new Chart(['tristitia', 'cauda draconis', 'populus', 'via']);
+  result = chart.getCompany(0);
+  t.deepEqual(result, {house: 1, company: 'demi-simple'});
+});
+
+test('Chart should find company from quesited', t => {
+  let chart = new Chart();
+  let result = chart.getCompany(5);
+  t.deepEqual(result, {house: 4, company: 'simple'});
+
+  chart = new Chart(['cauda draconis', 'puer', 'albus', 'carcer'], 0, 6);
+  console.log(chart.getHouses().map(h => h.figure.name));
+  result = chart.getCompany(6);
+  t.deepEqual(result, {house: 7, company: 'compound'});
 });

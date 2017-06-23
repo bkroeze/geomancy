@@ -105,6 +105,7 @@ test('Figures should know their company types', t => {
   t.is(puer.getCompanyType(rubeus), 'demi-simple');
   t.is(puer.getCompanyType(via), 'capitular');
   t.is(puer.getCompanyType(conjunctio), null);
+  t.is(puella.getCompanyType(puella), 'simple');
 });
 
 test('House should know its neighbors', t => {
