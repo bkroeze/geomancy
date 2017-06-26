@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "modules": true,
+      "impliedStrict": true
+    },
+    "rules": {
+        "semi": 2
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": false,
+  }
+}

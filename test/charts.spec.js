@@ -264,7 +264,7 @@ test('Chart should find company from quesited', t => {
   t.deepEqual(result, {house: 4, company: 'simple'});
 
   chart = new Chart(['cauda draconis', 'puer', 'albus', 'carcer'], 0, 6);
-  console.log(chart.getHouses().map(h => h.figure.name));
+  //console.log(chart.getHouses().map(h => h.figure.name));
   result = chart.getCompany(6);
   t.deepEqual(result, {house: 7, company: 'compound'});
 });
