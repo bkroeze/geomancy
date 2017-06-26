@@ -1,7 +1,7 @@
 'use strict';
 import test from 'ava';
 import { Figure } from '../lib/models';
-import { Chart, ChartSequence } from '../lib/charts';
+import { Chart, ChartSequence, addUnique } from '../lib/charts';
 
 const populus = Figure.byName('populus');
 let seq;
@@ -267,4 +267,16 @@ test('Chart should find company from quesited', t => {
   //console.log(chart.getHouses().map(h => h.figure.name));
   result = chart.getCompany(6);
   t.deepEqual(result, {house: 7, company: 'compound'});
+});
+
+test('Utility addUnique should add dictionaries together', t => {
+  const init = {a: [1,2], b: [3,4], c: [5,6]}
+  let added = {a: [1,2], b: [3,4], c: [7]}
+  addUnique(init, added);
+  t.deepEqual(init, {a: [1,2], b: [3,4], c: [5,6,7]});
+
+  added.c=[5,6,8];
+  added.d=['foo'];
+  addUnique(init, added);
+  t.deepEqual(init, {a: [1,2], b: [3,4], c: [5,6,7,8], d: ['foo']});
 });
