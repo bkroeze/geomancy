@@ -135,8 +135,8 @@ test('House should compare less than', t => {
 
 test('House should know its aspects', t => {
   let h = new House(0);
-  t.deepEqual(h.trines, [4,8]);
-  t.deepEqual(h.squares, [3,9]);
+  t.deepEqual(h.trines, [4, 8]);
+  t.deepEqual(h.squares, [3, 9]);
   t.deepEqual(h.sextiles, [2, 10]);
   t.is(h.opposition, 6);
 });
@@ -165,16 +165,16 @@ test('Other houses know sinister too', t => {
 });
 
 test('House should know its parents', t => {
-  for (let i=0; i<8; i++) {
+  for (let i = 0; i < 8; i++) {
     t.deepEqual(makeHouse(i).parents, []);
   }
-  t.deepEqual(makeHouse(8).parents, [0,1]);
-  t.deepEqual(makeHouse(9).parents, [2,3]);
-  t.deepEqual(makeHouse(10).parents, [4,5]);
-  t.deepEqual(makeHouse(11).parents, [6,7]);
-  t.deepEqual(makeHouse(12).parents, [8,9]);
-  t.deepEqual(makeHouse(13).parents, [10,11]);
-  t.deepEqual(makeHouse(14).parents, [12,13]);
+  t.deepEqual(makeHouse(8).parents, [0, 1]);
+  t.deepEqual(makeHouse(9).parents, [2, 3]);
+  t.deepEqual(makeHouse(10).parents, [4, 5]);
+  t.deepEqual(makeHouse(11).parents, [6, 7]);
+  t.deepEqual(makeHouse(12).parents, [8, 9]);
+  t.deepEqual(makeHouse(13).parents, [10, 11]);
+  t.deepEqual(makeHouse(14).parents, [12, 13]);
 });
 
 test('House should know its companion', t => {
