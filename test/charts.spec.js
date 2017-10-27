@@ -125,9 +125,9 @@ test('Chart should find springs', t => {
   const chart = new Chart(seq, 0, 11);
   const perfections = chart.getPerfections();
   t.is(perfections.springs.querent.length, 1);
-  t.deepEqual(perfections.springs.querent, [4]);
+  t.deepEqual(perfections.springs.querent, [{from: 0, to: 4}]);
   // t.is(perfections.springs.quesited.length, 2);
-  t.deepEqual(perfections.springs.quesited, [6, 8]);
+  t.deepEqual(perfections.springs.quesited, [{from: 11, to: 6}, {from: 11, to: 8}]);
 });
 
 test('Chart should find occupation', t => {
@@ -148,19 +148,19 @@ test('Chart should find occupation', t => {
   const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
   const chart = new Chart(seq, 0, 8);
   const perfections = chart.getPerfections();
-  t.deepEqual(perfections.occupation, [8]);
+  t.deepEqual(perfections.occupation, [{querent: 0, quesited: 8}]);
 });
 
 test('Chart should find conjunction', t => {
   const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
   const chart = new Chart(seq, 0, 7);
   const perfections = chart.getPerfections();
-  t.deepEqual(perfections.conjunction.quesited, [8]);
+  t.deepEqual(perfections.conjunction.quesited, [{querent: 8, quesited: 7}]);
 });
 
 test('Chart should find no mutation', t => {
   const seq = new ChartSequence('Via', 'Populus', 'Conjunctio', 'Populus');
-  const chart = new Chart(seq, 0, 7);
+  const chart = new Chart(seq, 10, 7);
   const perfections = chart.getPerfections();
   t.is(perfections.mutation.length, 0);
 });
@@ -185,7 +185,7 @@ test('Chart should find a translation', t => {
   const chart = new Chart(seq, 3, 6);
   const perfections = chart.getPerfections();
   t.is(perfections.translation.length, 1);
-  t.deepEqual(perfections.translation[0], [4, 7]);
+  t.deepEqual(perfections.translation[0], {querent: 4, quesited: 7});
 });
 
 test('Chart should not find a translation for the house exactly between the two', t => {
@@ -221,7 +221,7 @@ test('Chart should find aspects 1', t => {
     querent: 0,
     quesited: 2,
     aspect: 'sextile' });
-  t.is(perfections.aspects.denials.length, 1);
+  t.is(perfections.aspects.denials.length, 2);
   t.deepEqual(perfections.aspects.denials[0], {
     direction: '',
     querent: 8,
@@ -264,19 +264,62 @@ test('Chart should find company from quesited', t => {
   t.deepEqual(result, {house: 4, company: 'simple'});
 
   chart = new Chart(['cauda draconis', 'puer', 'albus', 'carcer'], 0, 6);
-  //console.log(chart.getHouses().map(h => h.figure.name));
+  // console.log(chart.getHouses().map(h => h.figure.name));
   result = chart.getCompany(6);
   t.deepEqual(result, {house: 7, company: 'compound'});
 });
 
 test('Utility addUnique should add dictionaries together', t => {
-  const init = {a: [1,2], b: [3,4], c: [5,6]}
-  let added = {a: [1,2], b: [3,4], c: [7]}
+  const init = {a: [1, 2], b: [3, 4], c: [5, 6]};
+  let added = {a: [1, 2], b: [3, 4], c: [7]};
   addUnique(init, added);
-  t.deepEqual(init, {a: [1,2], b: [3,4], c: [5,6,7]});
+  t.deepEqual(init, {a: [1, 2], b: [3, 4], c: [5, 6, 7]});
 
-  added.c=[5,6,8];
-  added.d=['foo'];
+  added.c = [5, 6, 8];
+  added.d = ['foo'];
   addUnique(init, added);
-  t.deepEqual(init, {a: [1,2], b: [3,4], c: [5,6,7,8], d: ['foo']});
+  t.deepEqual(init, {a: [1, 2], b: [3, 4], c: [5, 6, 7, 8], d: ['foo']});
+});
+
+test('Utility should add dictionaries 2', t => {
+  const init = {
+    'aspects': {
+      'perfections': [
+        {'direction': 'sinister', 'querent': 0, 'quesited': 2, 'aspect': 'sextile'}
+      ],
+      'denials': [
+        {'direction': '', 'querent': 8, 'quesited': 2, 'aspect': 'opposition'}
+      ]
+    }
+  };
+  const added = {
+    'aspects':
+    {'perfections':
+    [
+        {'direction': 'dexter', 'querent': 1, 'quesited': 9, 'aspect': 'trine'}
+    ],
+      'denials': [
+        {'direction': '', 'querent': 3, 'quesited': 9, 'aspect': 'opposition'}
+      ]
+    }
+  };
+  addUnique(init, added);
+  const expected = {
+    'perfections': [
+      {'direction': 'sinister', 'querent': 0, 'quesited': 2, 'aspect': 'sextile'},
+      {'direction': 'dexter', 'querent': 1, 'quesited': 9, 'aspect': 'trine'}
+    ],
+    'denials': [
+      {'direction': '', 'querent': 8, 'quesited': 2, 'aspect': 'opposition'},
+      {'direction': '', 'querent': 3, 'quesited': 9, 'aspect': 'opposition'}
+    ]
+  };
+  t.deepEqual(init.aspects, expected);
+});
+
+test('Chart should find perfections and denials by company', t => {
+  const chart = new Chart(['fortuna major', 'fortuna minor', 'populus', 'fortuna minor'], 0, 3);
+  const perfections = chart.getPerfections();
+  t.is(perfections.occupation.length, 1);
+  t.deepEqual(perfections.occupation[0], {querent: 1, quesited: 3});
 });

@@ -1,7 +1,7 @@
 {
   "name": "geomancy",
   "description": "Geomantic utilities",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "homepage": "https://github.com/bkroeze/geomancy",
   "author": {
     "name": "Bruce Kroeze",
@@ -21,7 +21,7 @@
     "npm": ">=1.4.3"
   },
   "scripts": {
-    "test": "gulp test && ava"
+    "test": "gulp test"
   },
   "ava": {
     "require": [
@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "gulp-bump": "^2.7.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
     "ava": "^0.19.1",
