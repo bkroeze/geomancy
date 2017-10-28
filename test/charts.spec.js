@@ -1,7 +1,7 @@
 'use strict';
 import test from 'ava';
 import { Figure } from '../lib/models';
-import { Chart, ChartSequence, addUnique } from '../lib/charts';
+import { Chart, ChartSequence, addUnique, getAttributeArray } from '../lib/charts';
 
 const populus = Figure.byName('populus');
 let seq;
@@ -324,4 +324,36 @@ test('Chart should find perfections and denials by company', t => {
   const indications = chart.getIndications();
   t.is(indications.occupations.length, 1);
   t.deepEqual(indications.occupations[0], {querent: 1, quesited: 3, weight: 4});
+});
+
+test('getAttributeArray should find weights', t => {
+  const work = {
+    one: [{a: false, weight: 1}, {b: true, weight: 2}],
+    two: {
+      foo: [{weight: 1}],
+      bar: [{weight: 1}, {weight: 1}]
+    }
+  };
+  let weights = getAttributeArray(work, 'weight');
+  t.deepEqual(weights, [1, 2, 1, 1, 1]);
+
+  work.shallow = {weight: 10};
+  weights = getAttributeArray(work, 'weight');
+  t.deepEqual(weights, [1, 2, 1, 1, 1, 10]);
+
+  work.noWeight = {foo: true};
+  weights = getAttributeArray(work, 'weight');
+  t.deepEqual(weights, [1, 2, 1, 1, 1, 10]);
+});
+
+test('chart should calculate total indication weight', t => {
+  const chart = new Chart(['fortuna major', 'fortuna minor', 'populus', 'fortuna minor'], 0, 3);
+  t.is(chart.getIndicationWeight(), 6);
+});
+
+test('Chart should find and calculate weight for impeditions', t => {
+  const chart = new Chart(['amisso', 'amisso', 'carcer', 'fortuna minor'], 0, 4);
+  const indications = chart.getIndications();
+  t.is('impedition' in indications, true);
+  t.is(chart.getIndicationWeight(), -8);  // two denials, square and impedition
 });
