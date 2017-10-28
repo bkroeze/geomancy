@@ -13,7 +13,7 @@ function houseCommand (args) {
   }
   if (args.perfections) {
     console.log('\nPerfections');
-    console.log(JSON.stringify(chart.getPerfections().aspects.perfections, null, 2));
+    console.log(JSON.stringify(chart.getIndications(), null, 2));
   }
 }
 
