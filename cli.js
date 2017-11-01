@@ -11,9 +11,12 @@ function houseCommand (args) {
   for (var i = 0; i < 12; i++) {
     console.log(i + ' ' + houses[i].figure.name);
   }
-  if (args.perfections) {
-    console.log('\nPerfections');
+  if (args.indications) {
+    console.log('\nIndications');
     console.log(JSON.stringify(chart.getIndications(), null, 2));
+  }
+  if (args.weight) {
+    console.log(`Weight = ${chart.getIndicationWeight()}`)
   }
 }
 
@@ -47,7 +50,8 @@ var figureString = '[figure1] [figure2] [figure3] [figure4]';
 
 function builder (yargs) {
   return chartOptions(yargs)
-    .option('perfections', {alias: 'p', type: 'boolean', default: false});
+    .option('indications', {alias: 'i', type: 'boolean', default: false})
+    .option('weight', {alias: 'w', type: 'boolean', default: false});
 }
 
 var args = require('yargs')
