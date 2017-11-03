@@ -21,7 +21,8 @@
     "npm": ">=1.4.3"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "build": "gulp build"
   },
   "ava": {
     "require": [
@@ -30,9 +31,7 @@
     "babel": "inherit"
   },
   "dependencies": {
-    "gulp-bump": "^2.7.0",
-    "lodash": "^4.17.4",
-    "yargs": "^10.0.3"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "ava": "^0.19.1",
@@ -46,8 +45,10 @@
     "gulp": "^3.9.1",
     "gulp-ava": "^0.17.1",
     "gulp-babel": "^6.1.2",
+    "gulp-bump": "^2.7.0",
     "gulp-eslint": "^4.0.0",
-    "gulp-npm-publish": "0.0.2"
+    "gulp-npm-publish": "0.0.2",
+    "yargs": "^10.0.3"
   },
   "keywords": [
     "geomancy",
