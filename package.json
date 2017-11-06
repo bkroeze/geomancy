@@ -22,7 +22,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "build": "gulp build"
+    "build": "gulp build",
+    "docs": "./node_modules/.bin/documentation build lib/charts.js -f md -o API.md"
   },
   "ava": {
     "require": [
@@ -41,6 +42,7 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
+    "documentation": "^5.3.3",
     "espower": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.17.1",

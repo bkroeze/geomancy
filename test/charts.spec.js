@@ -130,6 +130,12 @@ test('Chart should find springs', t => {
   t.deepEqual(indications.springs.quesited, [{from: 11, to: 6}, {from: 11, to: 8}]);
 });
 
+test('Chart should find springs 2', t => {
+  const chart = new Chart(['amisso', 'amisso', 'carcer', 'fortuna minor'], 0, 4);
+  const {springs} = chart.getIndications();
+  t.deepEqual(springs.querent, [{from: 0, to: 1}]);
+});
+
 test('Chart should find occupation', t => {
   /*
   [0'Via',

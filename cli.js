@@ -16,7 +16,7 @@ function houseCommand (args) {
     console.log(JSON.stringify(chart.getIndications(), null, 2));
   }
   if (args.weight) {
-    console.log(`Weight = ${chart.getIndicationWeight()}`)
+    console.log(`Weight = ${chart.getIndicationWeight()}`);
   }
 }
 

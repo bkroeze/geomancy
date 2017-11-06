@@ -8,7 +8,9 @@
       "impliedStrict": true
     },
     "rules": {
-      "semi": 2
+      "semi": 2,
+      "valid-jsdoc": "error",
+      "valid-typeof": "error"
     }
   },
   "env": {

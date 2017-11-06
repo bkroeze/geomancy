@@ -15,10 +15,15 @@ import bump from 'gulp-bump';
 const eslint = require('gulp-eslint');
 
 gulp.task('lint', () => {
-  return gulp.src(['**/*.js', '!node_modules/**'])
+  return gulp.src(['lib/*.js', '!node_modules/**'])
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
-    .pipe(eslint())
+    .pipe(eslint({
+      rules: {
+        'valid-jsdoc': 'warn',
+        'semi': 2
+      }
+    }))
     // eslint.format() outputs the lint results to the console.
     // Alternatively use eslint.formatEach() (see Docs).
     .pipe(eslint.format())
