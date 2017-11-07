@@ -108,6 +108,11 @@ test('Figures should know their company types', t => {
   t.is(puella.getCompanyType(puella), 'simple');
 });
 
+test('Figure should render as text', t => {
+  const puer = Figure.byName('puer');
+  t.is(puer.toTextFigure(), ' * \n * \n* *\n * ');
+});
+
 test('House should know its neighbors', t => {
   let h = new House(6);
   t.is(h.isNextTo(2), false);

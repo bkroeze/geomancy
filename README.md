@@ -16,8 +16,8 @@ Look at the tests for examples of the API.
 
 ## Other stuff
 
-* documentation - maybe I will add documentation if you ask it. open an issue for this.
+* documentation - I've started documenting the API.  See API.md.
 * support - open an issue [here](https://github.com/bkroeze/geomancy/issues).
 
 ## License
-[MIT](http://opensource.org/licenses/MIT) © 2016, Bruce Kroeze
+[MIT](http://opensource.org/licenses/MIT) © 2016-2017, Bruce Kroeze
