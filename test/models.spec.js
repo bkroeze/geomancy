@@ -196,3 +196,11 @@ test('House should know its companion', t => {
   t.is(makeHouse(10).companion, 11);
   t.is(makeHouse(11).companion, 10);
 });
+
+test('House should know its meanings', t => {
+  const puer = Figure.byName('puer');
+  const house = new House(2,puer);
+  const meaning = house.getMeaning();
+  t.is(meaning.house, "Communication, siblings, relatives, friends, neighbors, community, Siblings, short journeys, surroundings");
+  t.is(meaning.figure, "Raises a man to honor above his brethren, and to be feared of them; signifies journeys to be dangerous, and denotes persons of good credit.");
+});
