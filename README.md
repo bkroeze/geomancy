@@ -14,6 +14,13 @@ const fig = geomancy.Figure.byName('populus'); // Populus Figure
 Look at the tests for examples of the API.
 ```
 
+## Showing a chart
+
+Example:
+```bash
+./geomancy.js chart tristitia albus cauda-draconis caput-draconis --shield --houses=esoteric --meanings
+```
+
 ## Other stuff
 
 * documentation - I've started documenting the API.  See API.md.
