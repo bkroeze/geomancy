@@ -27,4 +27,4 @@ Example:
 * support - open an issue [here](https://github.com/bkroeze/geomancy/issues).
 
 ## License
-[MIT](http://opensource.org/licenses/MIT) © 2016-2017, Bruce Kroeze
+[MIT](http://opensource.org/licenses/MIT) © 2016-2018, Bruce Kroeze

@@ -1,0 +1,15 @@
+To Do on Geomancy lib
+---------------------
+* CLI
+** DONE Add table output
+   CLOSED: [2018-03-11 Sun 10:43]
+   - State "DONE"       from "TODO"       [2018-03-11 Sun 10:43]
+| _ |  0 |  1 |  2 | 3 | 4 |
+| 0 |  _ | 11 | 10 | 9 | _ |
+| 1 | 12 |  _ |  _ | _ | 8 |
+| 2 |  1 |  _ |  _ | _ | 7 |
+| 3 |  2 |  _ |  _ | _ | 6 |
+| 4 |  _ |  3 |  4 | 5 | _ |
+** Fix broken tests
+** Publish to NPM - no need to update version in package, it isn't pushed yet.
+* Add cardines?

@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.1.1
+### Added
+* New --housechart flag to show a text chart in the zodiac house layout for your chosen house projection system.
+
 ## 1.1.0
 ### Added
 * New --meanings flag to show chart meanings according to Agrippa
