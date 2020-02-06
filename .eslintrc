@@ -1,20 +1,73 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "modules": true,
-      "impliedStrict": true
-    },
-    "rules": {
-      "semi": 2,
-      "valid-jsdoc": "error",
-      "valid-typeof": "error"
-    }
-  },
   "env": {
-    "browser": true,
-    "node": false
-  }
+    "es6": true,
+    "browser": false
+  },
+	"extends": [
+    "standard",
+    "plugin:import/warnings"
+  ],
+	"plugins": [
+		"ava"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"rules": {
+		"ava/assertion-arguments": "error",
+		"ava/max-asserts": [
+			"off",
+			5
+		],
+		"ava/no-async-fn-without-await": "error",
+		"ava/no-cb-test": "off",
+		"ava/no-duplicate-modifiers": "error",
+		"ava/no-identical-title": "error",
+		"ava/no-ignored-test-files": "error",
+		"ava/no-invalid-end": "error",
+		"ava/no-nested-tests": "error",
+		"ava/no-only-test": "error",
+		"ava/no-skip-assert": "error",
+		"ava/no-skip-test": "error",
+		"ava/no-statement-after-end": "error",
+		"ava/no-todo-implementation": "error",
+		"ava/no-todo-test": "warn",
+		"ava/no-unknown-modifiers": "error",
+		"ava/prefer-async-await": "error",
+		"ava/prefer-power-assert": "off",
+		"ava/test-ended": "error",
+		"ava/test-title": [
+			"error",
+			"if-multiple"
+		],
+		"ava/use-t-well": "error",
+		"ava/use-t": "error",
+		"ava/use-test": "error",
+		"ava/use-true-false": "error",
+    "import/named": 2,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
+    "import/no-unresolved": [2, {"commonjs": false, "amd": false}],
+    "import/no-unused-modules": "on",
+    "import/prefer-default-export": "off",
+    "no-commonjs": "on",
+		"no-plusplus": "off",
+		"no-bitwise": "off",
+		"no-console": "off",
+    "object-curly-newline": ["error", {
+      "multiline": true
+    }],
+		"comma-dangle": [
+			"error",
+			{
+				"functions": "never",
+				"arrays": "always-multiline",
+				"objects": "always-multiline",
+				"imports": "always-multiline",
+				"exports": "always-multiline"
+			}
+		]
+	}
 }

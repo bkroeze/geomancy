@@ -1,7 +1,7 @@
 {
   "name": "geomancy",
   "description": "Geomantic utilities",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "homepage": "https://github.com/bkroeze/geomancy",
   "author": {
     "name": "Bruce Kroeze",
@@ -21,36 +21,71 @@
     "npm": ">=1.4.3"
   },
   "scripts": {
-    "test": "gulp test",
-    "build": "gulp build",
-    "docs": "./node_modules/.bin/documentation build lib/charts.js -f md -o API.md"
+    "compile": "babel lib --out-dir=dist",
+    "prepublish": "yarn compile",
+    "test": "ava",
+    "watch": "ava -v --watch",
+    "lint": "eslint src/**",
+    "docs": "documentation build lib/charts.js -f md -o API.md"
   },
   "ava": {
-    "require": [
-      "babel-register"
+    "files": [
+      "test/**/*spec.js"
     ],
-    "babel": "inherit"
+    "sources": [
+      "src/**/*.js",
+      "test/**/*.yaml"
+    ],
+    "cache": true,
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": false,
+    "compileEnhancements": false,
+    "require": [
+      "source-map-support",
+      "@babel/register",
+      "@babel/plugin-transform-regenerator",
+      "@babel/polyfill"
+    ],
+    "sourceMaps": true
   },
   "dependencies": {
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-export-namespace-from": "^7.8.3",
+    "@babel/plugin-proposal-function-sent": "^7.8.3",
+    "@babel/plugin-proposal-json-strings": "^7.8.3",
+    "@babel/plugin-proposal-numeric-separator": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-proposal-throw-expressions": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.8.3",
+    "@babel/plugin-transform-destructuring": "^7.8.3",
+    "@babel/plugin-transform-regenerator": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "@babel/runtime": "^7.8.4",
     "ava": "^0.19.1",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.25.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2016": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.24.1",
+    "babel-compile": "^2.0.0",
+    "babel-plugin-source-map-support": "^2.1.1",
     "csv2json": "^1.4.1",
     "documentation": "^5.3.3",
-    "espower": "^2.1.0",
-    "gulp": "^3.9.1",
-    "gulp-ava": "^0.17.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-bump": "^2.7.0",
-    "gulp-eslint": "^4.0.0",
-    "gulp-npm-publish": "0.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-ava": "^10.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "source-map-support": "^0.5.16",
     "yargs": "^10.0.3"
   },
   "keywords": [
